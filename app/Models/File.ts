@@ -7,8 +7,14 @@ export default class File extends BaseModel {
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 
+  @column()
+  userId: number
+
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public filename: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

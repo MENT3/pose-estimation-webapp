@@ -8,16 +8,20 @@ import { createCanvas, loadImage } from 'canvas'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class UploadsController {
-  public async index({}: HttpContextContract) {}
-
-  public async create({}: HttpContextContract) {}
-
-  public async store({ request, view }: HttpContextContract) {
+  public async store({ auth, request, response, view }: HttpContextContract) {
     const requestImage = request.file('image')
+
+    if (!requestImage) {
+      return response.badRequest('No image was uploaded.')
+    }
 
     await requestImage!.moveToDisk('./')
 
-    const filePath = requestImage!.filePath
+    const { fileName, filePath } = requestImage
+
+    await auth.user!.related('files').create({
+      filename: fileName,
+    })
 
     const tfImage = tfnode.node.decodeJpeg(await Drive.get(filePath!))
 
@@ -45,12 +49,4 @@ export default class UploadsController {
       image: canvas.toDataURL(),
     })
   }
-
-  public async show({}: HttpContextContract) {}
-
-  public async edit({}: HttpContextContract) {}
-
-  public async update({}: HttpContextContract) {}
-
-  public async destroy({}: HttpContextContract) {}
 }
