@@ -16,6 +16,9 @@ export default class File extends BaseModel {
   @column()
   public filename: string
 
+  @column()
+  public filepath: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

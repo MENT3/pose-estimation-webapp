@@ -21,6 +21,7 @@ export default class UploadsController {
 
     await auth.user!.related('files').create({
       filename: fileName,
+      filepath: filePath,
     })
 
     const tfImage = tfnode.node.decodeJpeg(await Drive.get(filePath!))
