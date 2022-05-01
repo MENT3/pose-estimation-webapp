@@ -1,9 +1,33 @@
 @layout('layouts/public')
 
 @section('body')
-  <form method="POST" action="{{ route('AuthController.register') }}">
-    <input type="email" name="email" id="email">
-    <input type="password" name="password" id="password">
-    <button type="submit">Connexion</button>
-  </form>
+  <div class="w-1/4">
+    <h1 class="pl-1 font-semibold text-xl text-gray-800">
+      Register
+    </h1>
+
+    <form
+      method="POST"
+      action="{{ route('AuthController.register') }}"
+      class="w-full mt-6 flex flex-col space-y-4"
+    >
+      <input
+        id="email"
+        type="email"
+        name="email"
+        class="py-2 px-4 text-sm rounded-md border border-gray-100"
+        placeholder="Email"
+      >
+      <input
+        id="password"
+        type="password"
+        name="password"
+        class="py-2 px-4 text-sm rounded-md border border-gray-100"
+        placeholder="Password"
+      >
+      <button type="submit" class="mt-4 py-2 px-4 bg-teal-50 font-semibold text-teal-700 text-sm rounded-md hover:bg-teal-100">
+        Inscription
+      </button>
+    </form>
+  </div>
 @end
