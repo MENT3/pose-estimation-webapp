@@ -22,6 +22,17 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
-})
+}).middleware('auth')
 
 Route.post('/upload', 'FilesController.store')
+
+// Auth
+Route.post('/login', 'AuthController.login')
+Route.get('/login', async ({ view }) => {
+  return view.render('auth/login')
+})
+
+Route.post('/register', 'AuthController.register')
+Route.get('/register', async ({ view }) => {
+  return view.render('auth/register')
+})

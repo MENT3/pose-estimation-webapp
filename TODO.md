@@ -1,0 +1,5 @@
+- [ ] Register page
+- [ ] Login page
+- [ ] Files table
+- [ ] Upload file with relation + security
+- [ ] List of uploaded files
