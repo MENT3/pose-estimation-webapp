@@ -1,8 +1,13 @@
-import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon'
+import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+
+import File from 'App/Models/File'
 
 export default class User extends BaseModel {
+  @hasMany(() => File)
+  public files: HasMany<typeof File>
+
   @column({ isPrimary: true })
   public id: number
 
@@ -22,7 +27,7 @@ export default class User extends BaseModel {
   public updatedAt: DateTime
 
   @beforeSave()
-  public static async hashPassword (user: User) {
+  public static async hashPassword(user: User) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
     }

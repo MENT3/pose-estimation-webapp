@@ -24,7 +24,7 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 }).middleware('auth')
 
-Route.post('/upload', 'FilesController.store')
+Route.post('/upload', 'FilesController.store').middleware('auth')
 
 // Auth
 Route.post('/login', 'AuthController.login')
