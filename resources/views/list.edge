@@ -1,0 +1,16 @@
+@layout('layouts/private')
+
+@section('body')
+  <h1 class="mb-4 text-xl">List des images uploadé</h1>
+
+  <ul class="space-y-3">
+    @each(post in await auth.user.related('files').query())
+      <li>
+        <span class="text-gray-800">{{ post.filename }}</span>
+        <div class="text-gray-400">
+          {{ post.filepath }}
+        </div>
+      </li>
+    @end
+  </ul>
+@end

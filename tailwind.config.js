@@ -22,7 +22,6 @@ module.exports = {
       red: colors.rose,
       yellow: colors.amber,
       teal: colors.teal,
-      darkblue: colors.blueGray,
     },
   },
 }

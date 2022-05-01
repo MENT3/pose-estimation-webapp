@@ -1,29 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdonisJS - A fully featured web framework for Node.js</title>
-  @entryPointStyles('app')
-  @entryPointScripts('app')
-</head>
-<body>
-  <main>
-    <div>
-      <h1 class="text-xl"> It Works! </h1>
-      <p class="subtitle">
-        T'es beau toi
-      </p>
+@layout('layouts/private')
 
-      <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="image">
+@section('body')
+  <h1 class="mb-4 text-xl">
+    Bonjour, {{ auth.user.email }}
+  </h1>
 
-        <button type="submit">
-          Envoyer
-        </button>
-      </form>
-
-    </div>
-  </main>
-</body>
-</html>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100">
+    <button type="submit" class="mt-4 py-2 px-4 bg-teal-50 font-semibold text-teal-700 text-sm rounded-md hover:bg-teal-100">
+      Envoyer
+    </button>
+  </form>
+@end

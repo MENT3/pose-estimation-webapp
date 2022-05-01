@@ -36,3 +36,7 @@ Route.post('/register', 'AuthController.register')
 Route.get('/register', async ({ view }) => {
   return view.render('auth/register')
 })
+
+Route.get('/list', async ({ view }) => {
+  return view.render('list')
+}).middleware('auth')
