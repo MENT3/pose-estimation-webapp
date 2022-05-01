@@ -5,11 +5,12 @@ import LoginValidator from 'App/Validators/Auth/LoginValidator'
 import RegisterValidator from 'App/Validators/Auth/RegisterValidator'
 
 export default class AuthController {
-  public async register({ request, response }: HttpContextContract) {
+  public async register({ auth, request, response }: HttpContextContract) {
     const payload = await request.validate(RegisterValidator)
 
-    const user = await User.create(payload)
-    console.log(user)
+    await User.create(payload)
+
+    await auth.use('web').attempt(payload.email, payload.password)
 
     return response.redirect().toPath('/')
   }
